@@ -55,7 +55,9 @@
           "color": {
             "field": "CPI",
             "type": "quantitative",
-            "scale": {"type": "log"}
+            "scale": {"type": "log",
+                      "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#a63603"]}
+           
           },
           "tooltip": [
             {"field": "properties.NAME", "type": "nominal", "title": "Country"},
