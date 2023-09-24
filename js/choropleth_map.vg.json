@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "COVID-19 Active Cases (10 Oct 2020)",
+  "title": "Global Country Information Dataset 2023",
   "width": 800,
   "height": 400,
   "projection": {"type": "equalEarth"},
@@ -16,21 +16,21 @@
           "url": "data/world-data-2023.csv"
         },
         "key": "Country",
-        "fields": ["Population"]
+        "fields": ["CPI"]
       }
     },
-    {"calculate": "datum.Population + 0.1", "as": "Population"}
+    {"calculate": "datum.CPI", "as": "CPI"}
   ],
   "mark": {"type": "geoshape"},
   "encoding": {
     "color": {
-      "field": "Population",
+      "field": "CPI",
       "type": "quantitative",
       "scale": {"type": "log"}
     },
     "tooltip": [
       {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-      {"field": "Population", "type": "quantitative"}
+      {"field": "CPI", "type": "quantitative"}
     ]
   }
 }
