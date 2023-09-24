@@ -1,36 +1,68 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Global Country Information Dataset 2023",
-  "width": 800,
-  "height": 400,
-  "projection": {"type": "equalEarth"},
-  "data": {
-    "url": "js/ne_110m_admin_0_countries.topojson",
-    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
-  },
-  "transform": [
-    {
-      "lookup": "properties.NAME",
-      "from": {
+    "title": "Global Country Information Dataset 2023",
+    "width": 800,
+    "height": 400,
+    "data": {
+      "url": "js/ne_110m_admin_0_countries.topojson",
+      "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+    },
+    "projection": {"type": "equalEarth"},
+    "layer": [
+      {
+        "transform": [
+          {
+            "calculate": "'Data is not available in ' + datum.properties.NAME",
+            "as": "note"
+          }
+        ],
+        "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
+        "encoding": {"tooltip": {"field": "note"}}
+      },
+      {
         "data": {
-          "url": "data/world-data-2023.csv"
+          "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+          "format": {"type": "topojson", "feature": "oceans"}
         },
-        "key": "Country",
-        "fields": ["CPI"]
+        "mark": {"type": "geoshape", "fill": "skyblue"}
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/WorldMapWithGraticules.topojson",
+          "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+        },
+        "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
+      },
+      {
+        "transform": [
+          {
+            "lookup": "properties.NAME",
+            "from": {
+              "data": {
+                "url": "data/world-data-2023.csv"
+              },
+              "key": "Country",
+              "fields": ["CPI"]
+            }
+          },
+          {
+            "calculate": "datum.CPI",
+            "as": "CPI"
+          }
+        ],
+        "mark": {"type": "geoshape", "stroke": "white"},
+        "encoding": {
+          "color": {
+            "field": "CPI",
+            "type": "quantitative",
+            "scale": {"type": "log"}
+          },
+          "tooltip": [
+            {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+            {"field": "CPI", "type": "quantitative"}
+          ]
+        }
       }
-    },
-    {"calculate": "datum.CPI", "as": "CPI"}
-  ],
-  "mark": {"type": "geoshape"},
-  "encoding": {
-    "color": {
-      "field": "CPI",
-      "type": "quantitative",
-      "scale": {"type": "log"}
-    },
-    "tooltip": [
-      {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-      {"field": "CPI", "type": "quantitative"}
-    ]
+    ],
+    "config": {}
   }
-}
