@@ -1,0 +1,149 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Land Area, CO2 Emissions, and Population",
+  "data": {
+    "url": "data/world-data-2023.csv"
+  },
+  "params": [
+    {
+      "name": "Population_Above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 1000000000,
+        "step": 1000000,
+        "name": "Minimum Population: "
+      }
+    },
+    {
+      "name": "Country_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Japan",
+          "India",
+          "Indonesia",
+          "China",
+          "Thailand",
+          "Bangladesh",
+          "Philippines",
+          "Iran"
+        ],
+        "labels": [
+          "Show All",
+          "Japan",
+          "India",
+          "Indonesia",
+          "China",
+          "Thailand",
+          "Bangladesh",
+          "Philippines",
+          "Iran"
+        ],
+        "name": "Country Selection: "
+      }
+    }
+  ],
+
+  "transform": [
+    {"filter": "datum.Population > Population_Above"},
+    {
+      "filter": "Country_selection == null || datum.Country == Country_selection"
+    }
+  ],
+
+  "encoding": {
+    "x": {
+      "field": "Land_Area",
+      "type": "quantitative",
+      "title": "Land_Area(Km2)",
+      "axis": {"tickCount": 4},
+      "scale": {"type": "log", "domain": [10000, 100000000]}
+    },
+    "y": {
+      "field": "Co2-Emissions",
+      "type": "quantitative",
+      "axis": {"tickCount": 4},
+      "scale": {"type": "log", "domain": [10000, 100000000]}
+    }
+  },
+  "layer": [
+    {
+      "mark": "circle",
+      "encoding": {
+        "size": {
+          "field": "Population",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [100000000,350000000,500000000,750000000,1000000000],
+            "range": [10, 50, 150, 200, 300, 500]
+          },
+          "legend": {"format": ".1s"}
+        },
+        "color": {
+          "field": "Country",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Japan",
+              "India",
+              "Indonesia",
+              "China",
+              "Thailand",
+              "Bangladesh",
+              "Philippines",
+              "Iran"
+            ],
+            "range": [
+              "#ff6961",
+              "#ffb480",
+              "#f8f38d",
+              "#42d6a4",
+              "#08cad1",
+              "#59adf6",
+              "#9d94ff",
+              "#c780e8"
+            ]
+          }
+        },
+        "opacity": {"value": 0.6},
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {"field": "Population", "type": "quantitative", "format": ","},
+          {"field": "Land_Area", "type": "quantitative", "format": ","},
+          {"field": "Co2-Emissions", "type": "quantitative", "format": ","}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 9,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "Country", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": "datum['Country'] == 'China' || datum['Country'] == 'Japan' || datum['Country'] == 'India' || datum['Country'] == 'Indonesia' ",
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {"field": "Population", "type": "quantitative", "format": ","},
+          {"field": "Land_Area", "type": "quantitative", "format": ","},
+          {"field": "Co2-Emissions", "type": "quantitative", "format": ","}
+        ]
+      }
+    }
+  ]
+}

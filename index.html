@@ -2,23 +2,95 @@
 <html>
 <head>
   <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <title>FIT3179 - Assignment 2</title>
   <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
   
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
   <!-- CSS file -->
   <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
 
 
 </head>
 <body>
+  <div class="page">
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1>Global Country Information Dataset 2023</h1>
+        <p>Comprehensive global dataset offering a diverse range of indicators for every country. Includes demographics, economics, environment, healthcare, education, and more. Enables in-depth analysis and cross-country comparisons.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
   
-<div id="choropleth_map"></div>
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1">
+        <div id="choropleth_map"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <p>Presented here is a map chart depicting the Corruption Perceptions Index (CPI) for countries worldwide. The CPI values provide insights into the perceived levels of corruption, with darker shades indicating higher levels of corruption and lighter shades representing lower levels. This visual representation offers a clear and comparative view of the global landscape of corruption perception.</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+   <!-- pure grid group -->
+   <div class="pure-g">
+    <div class="pure-u-1-2">
+      <div class="description description-left">
+        <p>This horizontal bar chart illustrates the Infant Mortality Rates (IMR) for various countries. Each bar represents a different nation, with the length of the bar corresponding to its respective IMR. Lower bars indicate lower rates of infant mortality, signifying better healthcare and living conditions. This visual representation offers a straightforward comparison of infant mortality across countries, providing valuable insights into global healthcare outcomes. </p>
+      </div>
+    </div>
+    <div class="pure-u-1-2">
+      <div id="bar_plot" class="vis-container"></div>
+    </div>
+  </div>
+  <!-- end pure grid group -->
+
+  <!-- pure grid group -->
+  <div class="pure-g">
+    <div class="pure-u-1-2">
+      <div class="description description-left">
+        <p>This dynamic bubble chart provides a multi-dimensional view of countries' environmental profiles. The horizontal axis represents land area (in square kilometers), while the vertical axis depicts CO2 emissions. The size of each bubble corresponds to the population of the respective country, offering a visual representation of its demographic scale. This visualization allows for an insightful examination of the interplay between land use, CO2 emissions, and population across nations. </p>
+      </div>
+    </div>
+    <div class="pure-u-1-2">
+      <div id="scatter_plot" class="vis-container"></div>
+    </div>
+  </div>
+  <!-- end pure grid group -->
 
 <script type="text/javascript">
 
-  var spec2 = "js/choropleth_map.vg.json";
-  vegaEmbed('#choropleth_map', spec2).then(function(result) {
+  var spec1 = "js/choropleth_map.vg.json";
+  var spec2 = "js/bar.json";
+  var spec3 = "js/scatter_plot_interactive.vg.json"
+
+  vegaEmbed('#choropleth_map', spec1).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  vegaEmbed('#bar_plot', spec2).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  vegaEmbed('#scatter_plot', spec3).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
 </script>

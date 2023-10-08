@@ -1,0 +1,20 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Infant Mortality by Country",
+  "data": {
+  "url": "data/world-data-2023.csv"
+  },
+  "mark": "bar",
+
+  "transform": [
+    {
+      "filter": {"field": "Country", "oneOf": ["Japan", "India", "Indonesia", "China", "Thailand","Bangladesh","Philippines", "Iran"]}
+    }
+  ],
+
+  "encoding": {
+    "x": { "field": "Infant mortality", "type": "quantitative"},
+    "y": { "field": "Country", "type": "nominal"}
+  }
+  }
+  
