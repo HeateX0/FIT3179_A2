@@ -1,6 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Land Area, CO2 Emissions, and Population",
+  "width": 150,
+  "height": 200,
   "data": {
     "url": "data/world-data-2023.csv"
   },

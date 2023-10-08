@@ -1,6 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Infant Mortality by Country",
+  "width": 400,
+  "height": 200,
   "data": {
   "url": "data/world-data-2023.csv"
   },
