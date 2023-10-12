@@ -1,5 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Comparison of CPI and GDP by Country",
     "data": {
     "url": "data/world-data-2023.csv"
     },
@@ -15,7 +16,7 @@
             ],
         
             "encoding": {
-            "x": { "field": "Country", "type": "nominal", "axis": {"grid": true}},
+            "x": { "field": "Country", "type": "nominal", "axis": {"grid": true}, "title": ""},
             "y": { "field": "CPI", "type": "quantitative"},
             "tooltip": [
                 {"field": "Country", "type": "nominal"},
@@ -46,7 +47,7 @@
             },
             "tooltip": [
                 {"field": "Country", "type": "nominal"},
-                {"field": "GDP", "type": "quantitative", "format": "$,.2f"}
+                {"field": "GDP", "type": "quantitative", "format": "$"}
               ] 
         }
         }
