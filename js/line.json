@@ -1,0 +1,56 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+    "url": "data/world-data-2023.csv"
+    },
+    "vconcat":[
+        {
+            "mark": {"type": "line", "point": true},
+            "width": 400,
+            "height": 200,
+            "transform": [
+            {
+                "filter": {"field": "Country", "oneOf": ["Japan", "India", "Indonesia", "China", "Thailand","Bangladesh","Philippines", "Iran"]}
+            }
+            ],
+        
+            "encoding": {
+            "x": { "field": "Country", "type": "nominal", "axis": {"grid": true}},
+            "y": { "field": "CPI", "type": "quantitative"},
+            "tooltip": [
+                {"field": "Country", "type": "nominal"},
+                {"field": "CPI", "type": "quantitative"}
+              ] 
+            }  
+        },
+        {
+            "mark": {"type": "line", "point": true},
+            "width": 400,
+            "transform": [
+            {
+                "filter": {"field": "Country", "oneOf": ["Japan", "India", "Indonesia", "China", "Thailand","Bangladesh","Philippines", "Iran"]}
+            },
+            {
+                "calculate": "datum.GDP / 100000", "as": "GDP"
+            }
+            
+            ],
+        
+            "encoding": {
+            "x": { "field": "Country", "type": "nominal", "axis": {"grid": true}},
+            "y": { "field": "GDP", 
+                   "title": "GDP(/million)",
+                   "type": "quantitative", 
+                   "axis": {"format": "$", "tickCount": 2},
+                   "scale": {"type": "log", "domain": [2000000, 300000000]}
+            },
+            "tooltip": [
+                {"field": "Country", "type": "nominal"},
+                {"field": "GDP", "type": "quantitative", "format": "$,.2f"}
+              ] 
+        }
+        }
+    ]
+}
+
+    
