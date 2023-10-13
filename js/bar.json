@@ -16,7 +16,11 @@
 
   "encoding": {
     "x": { "field": "Infant mortality", "type": "quantitative"},
-    "y": { "field": "Country", "type": "nominal"}
+    "y": { "field": "Country", "type": "nominal"},
+    "tooltip": [
+      {"field": "Country", "type": "nominal"},
+      {"field": "Infant mortality", "type": "quantitative"}
+    ]
   }
   }
   
