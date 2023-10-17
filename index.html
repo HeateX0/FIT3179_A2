@@ -29,11 +29,22 @@
     <div class="pure-g">
       <div class="pure-u-1-1">
         <h1>Global Country Information 2023</h1>
-        <p>Comprehensive global dataset offering a diverse range of indicators for every country. Includes demographics, economics, environment, healthcare, education, and more. Enables in-depth analysis and cross-country comparisons.</p>
+        <p>Comprehensive global dataset offering a <strong>range of indicators </strong>for every country . Includes <strong>demographics, economics, environment, healthcare, education, and more.</strong> Enables <strong>in-depth analysis</strong> and <strong>cross-country comparisons.</strong></p>
       </div>
     </div>
     <!-- end pure grid group -->
   
+    <br>
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h2>Global Corruption Perceptions Index (CPI) Across Countries</h2>
+        <p>The CPI values provide insights into the <strong>perceived levels</strong> of corruption. This visual representation offers a <strong>clear</strong> and <strong>comparative view</strong> of the global landscape of <strong>corruption perception</strong>.</p>
+      </div>
+    </div>
+    <!-- end pure grid group --> 
+
     <!-- pure grid group -->
     <div class="pure-g">
       <div class="pure-u-1">
@@ -42,19 +53,23 @@
     </div>
     <!-- end pure grid group -->
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-1">
-        <p>The CPI values provide insights into the perceived levels of corruption, with darker shades indicating higher levels of corruption and lighter shades representing lower levels. This visual representation offers a clear and comparative view of the global landscape of corruption perception.</p>
-      </div>
-    </div>
-    <!-- end pure grid group -->
+    <br>
 
    <!-- pure grid group -->
    <div class="pure-g">
     <div class="pure-u-1-2">
       <div class="description description-left">
-        <p>Each bar denotes a different nation, with its length directly proportional to the IMR. Shorter bars signify lower rates of infant mortality, indicating superior healthcare and living conditions. This visualization allows for a direct comparison of infant mortality rates, offering crucial insights into global healthcare outcomes. </p>
+        <h2>Comparative Analysis of Infant Mortality Among Countries</h2>
+        <p>From this bar chart, shorter bars indicate lower IM, signifying better <strong>healthcare</strong> and <strong>living conditions</strong>, offering valuable insights into global<strong> healthcare outcomes</strong>.</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2>Comparative Analysis of Birth Rates Among Countries</h2>
+        <p>From this bar chart, each bar provides a clear <strong>visual comparison</strong>, allowing for insights into global <strong>demographic trends.</strong></p>
       </div>
     </div>
     <div class="pure-u-1-2">
@@ -67,7 +82,8 @@
   <div class="pure-g">
     <div class="pure-u-1-2">
       <div class="description description-left">
-        <p>Land area is on the horizontal axis (sq. km), while CO2 emissions are on the vertical axis. Each bubble's size represents the population of the respective country, providing a visual insight into its demographic scale. This visualization allows for a deep examination of the interplay between land use, CO2 emissions, and population across nations. </p>
+        <h2>Key Metrics for Land Area, CO2 Emissions, and Population in Selected Countries</h2>
+        <p>Bubble size in this bubble chart indicates <strong>country population</strong>, offering a <strong>comprehensive view</strong> of the interplay between these factors on a global scale.</p>
       </div>
     </div>
     <div class="pure-u-1-2">
@@ -80,7 +96,8 @@
   <div class="pure-g">
     <div class="pure-u-1-2">
       <div class="description description-left">
-        <p>This line chart provides a comprehensive visual representation of the Consumer Price Index (CPI) trends across multiple countries. Each line on the chart corresponds to a specific country, allowing for a direct comparison of their respective inflation rates over a specified time period. The x-axis represents country, while the y-axis depicts the CPI values.</p>
+        <h2>Comparing Consumer Price Index (CPI) Across Countries</h2>
+        <p>Each line in this line chart represents a specific nation, enabling a <strong>direct comparison</strong> of their <strong>inflation rates</strong> over time. The x-axis denotes countries, and the y-axis indicates CPI values.</p>
         <br>
         <br>
         <br>
@@ -90,11 +107,26 @@
         <br>
         <br>
         <br>
-        <p>This line chart provides a visual snapshot of the Gross Domestic Product (GDP) trends across various countries. Each line on the chart corresponds to a specific nation, enabling a direct comparison of their economic performance over a defined period. The x-axis denotes country, while the y-axis represents GDP values.</p>
+        <h2>Comparing  Gross Domestic Product (GDP) Across Countries</h2>
+        <p>Each line in this line chart corresponds to a specific nation, allowing for a <strong>direct comparison</strong> of their <strong>economic performance</strong> over a specified period. The x-axis represents countries, and the y-axis depicts GDP values.</p>
       </div>
     </div>
     <div class="pure-u-1-2">
       <div id="line_plot" class="vis-container"></div>
+    </div>
+  </div>
+  <!-- end pure grid group -->
+
+  <!-- pure grid group -->
+  <div class="pure-g">
+    <div class="pure-u-1-2">
+      <div class="description description-left">
+        <h2>Key Metrics for Land Area, CO2 Emissions, and Population in Selected Countries</h2>
+        <p>Bubble size in this bubble chart indicates <strong>country population</strong>, offering a <strong>comprehensive view</strong> of the interplay between these factors on a global scale.</p>
+      </div>
+    </div>
+    <div class="pure-u-1-2">
+      <div id="dot_plot" class="vis-container"></div>
     </div>
   </div>
   <!-- end pure grid group -->
@@ -105,14 +137,13 @@
 
 
 
-
-
 <script type="text/javascript">
 
   var spec1 = "js/choropleth_map.vg.json";
-  var spec2 = "js/bar.json";
+  var spec2 = "js/horizon_bar.json";
   var spec3 = "js/scatter_plot_interactive.vg.json"
-  var spec4 = "js/line.json"
+  var spec4 = "js/vertical_bar.json"
+  var spec5 = "js/dot_plot.json"
 
   vegaEmbed('#choropleth_map', spec1).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
@@ -127,6 +158,10 @@
   }).catch(console.error);
 
   vegaEmbed('#line_plot', spec4).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  vegaEmbed('#dot_plot', spec5).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
 </script>

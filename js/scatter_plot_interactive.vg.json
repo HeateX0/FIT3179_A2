@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Land Area, CO2 Emissions, and Population",
+  "title": "Land Area, CO2 Emissions, and Population by Country",
   "width": 300,
   "height": 200,
   "data": {
@@ -86,8 +86,8 @@
           "type": "quantitative",
           "scale": {
             "type": "threshold",
-            "domain": [100000000,350000000,500000000,750000000,1000000000],
-            "range": [10, 50, 150, 200, 300, 500]
+            "domain": [100000000,350000000,500000000,750000000],
+            "range": [50, 150, 300, 450, 800]
           },
           "legend": {"format": ".1s"}
         },
@@ -106,14 +106,14 @@
               "Iran"
             ],
             "range": [
-              "#ff6961",
-              "#ffb480",
-              "#f8f38d",
-              "#42d6a4",
-              "#08cad1",
-              "#59adf6",
-              "#9d94ff",
-              "#c780e8"
+              "#FF0000",
+              "#FF5500",
+              "#FFFF00",
+              "#00FF00",
+              "#0000FF",
+              "#AA00FF",
+              "#F19CBB",
+              "#990066"
             ]
           }
         },

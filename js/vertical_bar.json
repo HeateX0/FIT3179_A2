@@ -1,14 +1,29 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Comparison of CPI and GDP by Country",
     "data": {
     "url": "data/world-data-2023.csv"
     },
     "vconcat":[
         {
-            "mark": {"type": "line", "point": true},
+            "layer":[
+                {
+                    "mark": {"type": "bar", "point": true}
+                },
+                {
+                    "mark": {
+                        "type": "text",
+                        "baseline": "bottom",
+                        "dx": 3
+                      },
+                      "encoding": {
+                        "text": {"field": "CPI", "type": "quantitative"}
+                      }
+                }
+            ],
+            
             "width": 400,
             "height": 200,
+            "title": "CPI by Country",
             "transform": [
             {
                 "filter": {"field": "Country", "oneOf": ["Japan", "India", "Indonesia", "China", "Thailand","Bangladesh","Philippines", "Iran"]}
@@ -25,14 +40,30 @@
             }  
         },
         {
-            "mark": {"type": "line", "point": true},
+            "layer":[
+                {
+                    "mark": {"type": "bar", "point": true}
+                },
+                {
+                    "mark": {
+                        "type": "text",
+                        "align": "center",
+                        "baseline": "bottom",
+                        "dx": 3
+                      },
+                      "encoding": {
+                        "text": {"field": "GDP", "type": "quantitative", "format": "$.2f"}
+                      }
+                }
+            ],
             "width": 400,
+            "title": "GDP by Country",
             "transform": [
             {
                 "filter": {"field": "Country", "oneOf": ["Japan", "India", "Indonesia", "China", "Thailand","Bangladesh","Philippines", "Iran"]}
             },
             {
-                "calculate": "datum.GDP / 100000", "as": "GDP"
+                "calculate": "datum.GDP / 10000000", "as": "GDP"
             }
             
             ],
@@ -40,10 +71,10 @@
             "encoding": {
             "x": { "field": "Country", "type": "nominal", "axis": {"grid": true}},
             "y": { "field": "GDP", 
-                   "title": "GDP(/million)",
+                   "title": "GDP(/100million)",
                    "type": "quantitative", 
                    "axis": {"format": "$", "tickCount": 2},
-                   "scale": {"type": "log", "domain": [2000000, 300000000]}
+                   "scale": {"type": "log", "domain": [20000, 3000000]}
             },
             "tooltip": [
                 {"field": "Country", "type": "nominal"},

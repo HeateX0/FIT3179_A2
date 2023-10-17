@@ -1,0 +1,52 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+    "title":"Gasoline Price and CPI by Country",
+    "data": {
+        "url": "data/world-data-2023.csv"
+        },
+        "width": 400,
+        "height": 200,
+        "mark":{
+            "type": "point"},
+    "transform": [
+        {
+          "filter": {"field": "Country", "oneOf": ["Japan", "India", "Indonesia", "China", "Thailand","Bangladesh","Philippines", "Iran"]}
+        }
+      ],
+      
+    "encoding": {
+      "x": {"field": "Gasoline Price", "type": "quantitative", "scale": {"domain": [0.3, 1.2]}},
+
+      "y": {"field": "CPI", "type": "quantitative"},
+      "color": {
+        "field": "Country",
+        "type": "nominal",
+        "scale": {
+          "domain": [
+            "Japan",
+            "India",
+            "Indonesia",
+            "China",
+            "Thailand",
+            "Bangladesh",
+            "Philippines",
+            "Iran"
+          ],
+          "range": [
+            "#FF0000",
+            "#FF5500",
+            "#FFFF00",
+            "#00FF00",
+            "#0000FF",
+            "#AA00FF",
+            "#F19CBB",
+            "#990066"
+          ]
+        }
+      },
+      "tooltip": [
+        {"field": "Country", "type": "nominal"},
+        {"field": "Gasoline Price", "type": "quantitative", "format": "$"}
+      ]
+    }
+  }
