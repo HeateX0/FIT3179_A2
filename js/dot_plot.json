@@ -6,23 +6,59 @@
         },
         "width": 400,
         "height": 200,
-        "mark":{
-            "type": "point"},
-    "transform": [
-        {
-          "filter": {"field": "Country", "oneOf": ["Japan", "India", "Indonesia", "China", "Thailand","Bangladesh","Philippines", "Iran"]}
-        }
-      ],
-      
-    "encoding": {
-      "x": {"field": "Gasoline Price", "type": "quantitative", "scale": {"domain": [0.3, 1.2]}},
 
-      "y": {"field": "CPI", "type": "quantitative"},
-      "color": {
+    "params": [
+        {
+            "name": "Country_selection",
+            "bind": {
+            "input": "select",
+            "options": [
+                null,
+                "Japan",
+                "India",
+                "Indonesia",
+                "China",
+                "Thailand",
+                "Bangladesh",
+                "Philippines",
+                "Iran"
+            ],
+            "labels": [
+                "Show All",
+                "Japan",
+                "India",
+                "Indonesia",
+                "China",
+                "Thailand",
+                "Bangladesh",
+                "Philippines",
+                "Iran"
+            ],
+            "name": "Country Selection: "
+            }
+        }
+        ],
+
+
+        "mark":{"type": "point"},
+
+    "transform": [{
+        "filter": "Country_selection == null || datum.Country == Country_selection"
+        },
+        {
+            "filter": {"field": "Country", "oneOf": ["Japan", "India", "Indonesia", "China", "Thailand","Bangladesh","Philippines", "Iran"]}
+        }
+        ],
+        
+    "encoding": {
+        "x": {"field": "Gasoline Price", "type": "quantitative", "scale": {"domain": [0.3, 1.2]}},
+
+        "y": {"field": "CPI", "type": "quantitative", "scale": {"domain": [0, 600]}},
+        "color": {
         "field": "Country",
         "type": "nominal",
         "scale": {
-          "domain": [
+            "domain": [
             "Japan",
             "India",
             "Indonesia",
@@ -31,8 +67,8 @@
             "Bangladesh",
             "Philippines",
             "Iran"
-          ],
-          "range": [
+            ],
+            "range": [
             "#FF0000",
             "#FF5500",
             "#FFFF00",
@@ -41,12 +77,12 @@
             "#AA00FF",
             "#F19CBB",
             "#990066"
-          ]
+            ]
         }
-      },
-      "tooltip": [
+        },
+        "tooltip": [
         {"field": "Country", "type": "nominal"},
         {"field": "Gasoline Price", "type": "quantitative", "format": "$"}
-      ]
+        ]
     }
   }

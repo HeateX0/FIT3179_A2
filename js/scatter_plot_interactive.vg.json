@@ -55,9 +55,6 @@
       "filter": "Country_selection == null || datum.Country == Country_selection"
     },
     {
-      "filter": "Country_selection == null || datum.Country == Country_selection"
-    },
-    {
       "filter": {"field": "Country", "oneOf": ["Japan", "India", "Indonesia", "China", "Thailand","Bangladesh","Philippines", "Iran"]}
     }
   ],
